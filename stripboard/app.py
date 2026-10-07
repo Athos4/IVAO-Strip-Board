@@ -9,7 +9,6 @@ from .airport import AirportProfile, profile_for
 from .aurora import AuroraClient
 from .models import FlightStrip, Placement, Position, Settings
 from .store import Store
-from .wake_turbulence import wake_category
 
 COLORS = {
     "bg": "#182128", "panel": "#24323b", "grid": "#43535d", "strip": "#edc282", "ink": "#000000",
@@ -602,7 +601,7 @@ class StripBoard(tk.Tk):
         departure, arrival = (home_airport, other_airport) if random.random() < 0.5 else (other_airport, home_airport)
         callsign = random.choice(("AFR", "EZY", "RYR", "TVF")) + str(random.randint(100, 999))
         aircraft = random.choice(("A320", "B738", "E190"))
-        strip = FlightStrip(callsign, departure, arrival, aircraft, wake_category(aircraft), "DCT OKIPA", random.choice(("FL080", "FL120", "FL180")))
+        strip = FlightStrip(callsign, departure, arrival, aircraft, "M", "DCT OKIPA", random.choice(("FL080", "FL120", "FL180")))
         self.apply_message(("upsert", strip))
 
     def configure_dialog(self) -> None:

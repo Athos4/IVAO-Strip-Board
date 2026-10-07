@@ -49,9 +49,9 @@ Chaque strip reprend les proportions réelles d'un strip ADI (242 mm de large)
 réparties en 6 blocs :
 
 1. **Identification** — indicatif, type d'avion + catégorie de turbulence de
-   sillage (calculée automatiquement via `stripboard/wake_turbulence.py`),
-   aéroports départ/arrivée, règles de vol, transpondeur assigné ou affiché
-   selon la phase de vol.
+   sillage (transmise par Aurora dans le plan de vol), aéroports
+   départ/arrivée, règles de vol, transpondeur assigné ou affiché selon la
+   phase de vol.
 2. **Barre couleur** — rouge pour un départ, bleu pour une arrivée, les deux
    empilées pour un tour de piste.
 3. **Route / coordination / point d'attente** — le repère de procédure prévu
@@ -108,8 +108,6 @@ dessous »*.
 
 - `stripboard/airport.py` — profils d'aéroport et pistes.
 - `stripboard/board.py` — disposition des 15 lignes du tableau.
-- `stripboard/wake_turbulence.py` — catégorie de turbulence de sillage par
-  type d'avion ICAO.
 - `stripboard/models.py` — champs du strip (EOBT, ATIS, coordination, point
   d'attente, etc.) et `Placement.under` pour l'alignement conditionnel.
 - `stripboard/app.py` — rendu du tableau, champs interactifs, glisser-déposer
