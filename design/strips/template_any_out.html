@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Out</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <style media="all,print">
+        @media print {
+            @page { margin: 0; size: landscape; }
+            html { margin-top: 12mm !important; }
+            body { margin: 0; }
+        }
+        * { box-sizing: border-box; }
+        html, body { width: 200mm; height: 26mm; margin: 0; padding: 0; font-family: "Sometype Mono", monospace; color: #000; }
+        html { margin-top: 2mm; }
+
+        #strip {
+            position: relative; width: 242mm; height: 26mm; margin: 0 0 0 5px;
+            background: #EDC282; border: 0.3mm solid #000; overflow: hidden;
+            -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        .v { position: absolute; width: 0; border-left: 0.3mm solid #000; }
+        .h { position: absolute; height: 0; border-top: 0.3mm solid #000; }
+        .bar { position: absolute; left: 72.5mm; top: 0; width: 0; height: 26mm; border-left: 2.5mm solid #C62828; }
+        .mark { position: absolute; left: 0; top: 0; width: 0; height: 3mm; border-left: 1.8mm solid #000; }
+
+        .f   { position: absolute; white-space: nowrap; line-height: 1; }
+        .t   { position: absolute; white-space: nowrap; line-height: 1; font-size: 9px; font-weight: 700; color: #5a4424; }
+        .c   { text-align: center; }
+        .cs  { font-size: 34px; font-weight: 800; letter-spacing: -1px; }
+        .big { font-size: 26px; font-weight: 800; }
+        .mid { font-size: 20px; font-weight: 700; }
+        .n   { font-size: 17px; }
+        .sm  { font-size: 13px; }
+        .xs  { font-size: 11px; }
+    </style>
+</head>
+<body>
+<div id="strip">
+    <div class="mark"></div>
+    <div class="v" style="left:42.5mm; top:0; height:11mm;"></div>
+    <div class="h" style="left:0; top:11mm; width:42.5mm;"></div>
+    <div class="bar"></div>
+    <div class="h" style="left:75mm; top:13mm; width:59mm;"></div>
+    <div class="v" style="left:128mm; top:0; height:13mm;"></div>
+    <div class="v" style="left:134mm; top:0; height:26mm;"></div>
+    <div class="v" style="left:194mm; top:0; height:26mm;"></div>
+    <div class="h" style="left:194mm; top:13mm; width:33.4mm;"></div>
+    <div class="v" style="left:210.7mm; top:0; height:26mm;"></div>
+    <div class="v" style="left:227.4mm; top:0; height:26mm;"></div>
+
+    <div class="f cs" style="left:1.5mm; top:1mm;">[cs]</div>
+    <div class="f n"  style="left:1.5mm; top:13.5mm;">[acft-typ]/[acft-cat]</div>
+    <div class="f sm" style="left:1.5mm; top:20.5mm;">[tas]</div>
+    <div class="f n"  style="left:27mm; top:17mm;">[dep]</div>
+    <div class="f big" style="left:49mm; top:15.5mm;">[dest]</div>
+
+    <div class="f mid" style="left:76.5mm; top:1.5mm;">[proc-wpt]</div>
+    <div class="f sm"  style="left:76.5mm; top:8.5mm;">[entry-fix]</div>
+    <div class="f sm"  style="left:76.5mm; top:15mm;">[next]</div>
+    <div class="f big" style="left:104mm; top:16mm;">[assr]</div>
+
+    <div class="t" style="left:135mm; top:0.8mm;">NIV</div>
+    <div class="f big" style="left:141mm; top:1.5mm;">[afl]</div>
+    <div class="f sm" style="left:141mm; top:9mm;">[rf]</div>
+    <div class="t" style="left:183mm; top:0.8mm;">ATIS</div>
+    <div class="t" style="left:135mm; top:13.8mm;">TWY</div>
+    <div class="t" style="left:152mm; top:13.8mm;">REP</div>
+    <div class="t" style="left:170mm; top:13.8mm;">POSTE</div>
+    <div class="f big" style="left:170mm; top:17mm;">[stand]</div>
+
+    <div class="t" style="left:195mm; top:0.8mm;">EOBT</div>
+    <div class="f c mid" style="left:194mm; width:16.7mm; top:5mm;">[eobt]</div>
+    <div class="t" style="left:211.7mm; top:0.8mm;">QFU</div>
+    <div class="f c big" style="left:210.7mm; width:16.7mm; top:4mm;">[rwy-a]</div>
+    <div class="t" style="left:195mm; top:13.8mm;">DEC</div>
+    <div class="t" style="left:211.7mm; top:13.8mm;">CTC</div>
+
+    <div class="f c mid" style="left:227.4mm; width:14.6mm; top:3mm;">TWR</div>
+    <div class="f c xs"  style="left:227.4mm; width:14.6mm; top:15mm;">[p-d-dmy]</div>
+    <div class="f c xs"  style="left:227.4mm; width:14.6mm; top:20mm;">[p-time]</div>
+</div>
+</body>
+</html>
