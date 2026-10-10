@@ -39,5 +39,5 @@ class Store:
 
     def save_layout(self, layout: dict[str, Placement]) -> None:
         self.root.mkdir(parents=True, exist_ok=True)
-        value = {key: {"row": p.row, "column": p.column, "span": p.span} for key, p in layout.items()}
+        value = {key: {"row": p.row, "column": p.column, "span": p.span, "under": p.under} for key, p in layout.items()}
         self.layout_file.write_text(json.dumps(value, indent=2), encoding="utf-8")

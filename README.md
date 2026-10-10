@@ -30,18 +30,25 @@ pyinstaller --noconsole --onefile --name IVAO-Strip-Board stripboard/__main__.py
 
 ## Connexion Aurora
 
-Dans **Configuration**, renseigner l'adresse et le port exposés par le module
-third-party d'Aurora, puis associer chaque position à ses codes OACI (séparés par
-des virgules). L'adaptateur attend un objet JSON par ligne ; un strip ressemble à :
+Dans Aurora : `F7` → onglet **Other** → **3rd Party Software Access** → **Yes**.
+Dans **Configuration** de l'appli, renseigner l'adresse (en général `127.0.0.1`)
+et le port **1130**, puis associer chaque position à ses codes OACI (séparés par
+des virgules).
 
-```json
-{"type":"strip","callsign":"AFR123","departure":"LFPG","arrival":"LFPO","aircraft":"A320","route":"OKIPA DCT","level":"FL120"}
-```
+Le protocole réel d'Aurora est ASCII, en TCP, avec des commandes au format
+`#COMMANDE;champ1;champ2;...` terminées par CR/LF (doc officielle IVAO :
+*Aurora 3rd Parties Documentation*). L'appli interroge périodiquement `#TR`
+(trafic en vue), puis `#FP;CALLSIGN` (plan de vol) et `#TRPOS;CALLSIGN`
+(position/altitude) pour chaque indicatif. Cette couche est isolée dans
+`stripboard/aurora.py` afin de pouvoir l'adapter facilement si le protocole
+évolue.
 
-`type: "delete"` avec un `callsign` retire un vol. Les champs usuels `dep`,
-`dest`, `adep`, `ades`, `flight_level` et `assigned_level` sont également
-acceptés. Cette couche est isolée dans `stripboard/aurora.py` afin de pouvoir
-adapter facilement le mapping à la version exacte de l'interface Aurora.
+## Tableau ADI/ENAC
+
+Pour les positions associées à un aéroport pris en charge (Toulouse-Blagnac
+pour l'instant, d'autres à venir), l'appli bascule automatiquement sur un
+tableau de strips au format ADI/ENAC avec alignement conditionnel sur les
+pistes. Détails dans [docs/ADI_BOARD.md](docs/ADI_BOARD.md).
 
 ## Tests
 

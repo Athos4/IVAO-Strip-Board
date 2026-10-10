@@ -1,23 +1,27 @@
-import json
 import tempfile
 import unittest
 from pathlib import Path
 
-from stripboard.aurora import parse_message
+from stripboard.aurora import parse_line
 from stripboard.models import FlightStrip, Placement, Position, Settings
 from stripboard.store import Store
 
 
 class ProtocolTests(unittest.TestCase):
-    def test_parses_aliases(self):
-        kind, strip = parse_message(json.dumps({"callsign": "afr1", "adep": "lfpg", "ades": "lfpo", "flight_level": 120}))
-        self.assertEqual(kind, "upsert")
-        self.assertEqual((strip.callsign, strip.departure, strip.arrival, strip.level), ("AFR1", "LFPG", "LFPO", "120"))
+    def test_parses_traffic_list(self):
+        self.assertEqual(parse_line("#TR;AFR1;BAW2;"), ("#TR", ["AFR1", "BAW2", ""]))
 
-    def test_delete_and_invalid_messages(self):
-        self.assertEqual(parse_message('{"type":"delete","callsign":"afr1"}'), ("delete", "AFR1"))
-        self.assertIsNone(parse_message("not json"))
-        self.assertIsNone(parse_message("[]"))
+    def test_parses_error_and_invalid_lines(self):
+        self.assertEqual(parse_line("$ERR;unknown command"), ("$ERR", ["unknown command"]))
+        self.assertIsNone(parse_line("not aurora"))
+        self.assertIsNone(parse_line(""))
+
+    def test_builds_strip_from_flight_plan_and_position(self):
+        fp = ["LFPG", "LFPO", "", "", "A320"] + [""] * 4 + ["120"] + [""] * 4
+        pos = ["090", "090", "3500"] + [""] * 6 + ["F120"]
+        strip = FlightStrip.from_aurora("afr1", fp, pos)
+        self.assertEqual((strip.callsign, strip.departure, strip.arrival, strip.aircraft, strip.level, strip.altitude),
+                          ("AFR1", "LFPG", "LFPO", "A320", "F120", 3500))
 
 
 class ModelTests(unittest.TestCase):

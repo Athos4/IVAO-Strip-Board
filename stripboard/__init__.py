@@ -1,3 +1,1 @@
-"""IVAO Strip Board application."""
-
 __version__ = "1.0.0"
